@@ -1,0 +1,3 @@
+Não incluí outros itens que fazem parte do projeto pois quis mostrar apenas as partes que realizam 
+a pesquisa e que mostram as imagens retornadas, estes intens que faltam são incluidos automaticamente 
+pelo visual studio. Para executar corretamente o projeto basta apenas encaixar as views o scripts e o controlador a um projeto ASP.NET MVC.

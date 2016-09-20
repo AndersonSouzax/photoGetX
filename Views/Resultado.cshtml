@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+    var imgs = @Html.Raw(Json.Encode(ViewData["pics"])) as HtmlString;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br" data-ng-app="PhotogetX">
+<head>
+   <style>
+   #navlist li{
+     display: inline;
+     list-style-type: none;
+     padding-right: 20px;
+     padding-bottom:5px;
+     padding-top:5px;
+   }
+    header {
+     background-color:darkviolet;
+     height:50px;
+     margin-bottom:20px;
+     color:white;
+    }
+    #lista {
+     margin-top:10px;
+     padding-top:10px;
+     border: solid 1px darkviolet;
+    }
+     #nave {
+     padding-left:10px;
+     }
+
+      
+  </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Resultados da pesquisa</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    
+</head>
+<header>
+     <h3 style="text-align:center; padding-top:15px">Resultados da Pesquisa</h3>
+ </header>
+<body>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script>
+(function () {
+    var i = 0;
+    var app = angular.module("PhotogetX", []);
+
+    app.controller('FotosController', function ($scope) {
+        //Repassar urls das imagens para serem mostradas//
+        var j = 0,d = 0;
+        $scope.fotos = gem;
+      });
+
+
+    var ars = String(@imgs).split(',');
+    var gem = [];
+    for (i = 0; i < ars.length; i++) {
+        gem[i] = { src: ars[i], imgID: i }
+    }
+})();
+</script>
+
+<nav id="nave">
+   <a href="/Home/photogetX"class="btn btn-default btn-md">Nova busca</a>
+</nav>
+ <div id="lista" data-ng-controller="FotosController as pics">
+   <div id="listablock" style="text-align:center">
+     <h4 style="color:darkviolet">A pesquisa retornou {{fotos.length}} Resultados</h4>
+      <ul id="navlist">    
+        <li class="fts" data-ng-repeat="ims in fotos">             
+          <img data-ng-src="{{ims.src}}" />
+            </li>
+         </ul>
+      </div>
+   </div>
+ </body>   
+</html>
